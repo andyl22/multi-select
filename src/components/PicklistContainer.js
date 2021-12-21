@@ -8,6 +8,7 @@ function PicklistContainer(props) {
     if (checked.includes(e.target.value)) {
       setChecked(checked.filter((x) => x !== e.target.value));
     } else {
+      if(e.target.value===undefined) return;
       setChecked([...checked, e.target.value]);
     }
   };
