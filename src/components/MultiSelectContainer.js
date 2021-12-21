@@ -3,11 +3,27 @@ import PicklistContainer from "./PicklistContainer";
 import PicklistSearchInput from "./PicklistSearchInput";
 
 function MultiSelectContainer() {
-  const originalPicklistData = ["san francisco", "new york", "buffalo", "austin", "long beach", "los angeles", "denver", "seattle"];
   const [expanded, setExpanded] = useState(false);
   const [checked, setChecked] = useState([]);
-  const [picklistOptions, setPicklistOptions] = useState(originalPicklistData);
+  const [originalPicklistData, setOriginalPicklistData] = useState([]);
+  const [picklistOptions, setPicklistOptions] = useState([]);
   const picklistRef = useRef();
+
+  useEffect(() => {
+    fetchData()
+      .then(data => {
+        setOriginalPicklistData(data)
+        setPicklistOptions(data)
+      })
+      .catch(err => console.log(err))
+  },[]);
+
+ const fetchData = async () => {
+   const res = await fetch('http://localhost:3000/categories/api')
+   let data = await res.json();
+   data = data.category_list.map(category => category.name);
+   return data;
+  }
 
   useEffect(() => {
     document.addEventListener("mousedown", (e) => {
@@ -19,13 +35,13 @@ function MultiSelectContainer() {
 
   return (
     <div className="multi-select-container" ref={picklistRef}>
+      <div>{checked}</div>
       <PicklistSearchInput
         isExpanded={expanded}
         setExpand={setExpanded}
         picklistOptions={originalPicklistData}
         setPicklistOptions={setPicklistOptions}
         expanded={expanded}
-        checked={checked}
       />
       {expanded ? (
         <PicklistContainer

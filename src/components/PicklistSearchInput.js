@@ -4,11 +4,13 @@ function PicklistSearchInput(props) {
   const [value, setValue] = useState('');
 
   function toggleExpand() {
-    props.setExpand(!props.expanded);
+    if(!props.expanded) {
+      props.setExpand(true);
+    }
   }
 
   function filterList(e) {
-    if(!props.expanded) toggleExpand();
+    toggleExpand();
     const searchInput = e.target.value;
     const filteredOptions = props.picklistOptions.filter((text) =>
       text.includes(searchInput)
@@ -26,7 +28,7 @@ function PicklistSearchInput(props) {
         type="text"
         className="picklist-input"
         value = {value}
-        placeholder={props.checked}
+        placeholder="Choose Option(s)"
         onChange={handleChange}
         onClick={toggleExpand}
         onKeyUp={filterList}
