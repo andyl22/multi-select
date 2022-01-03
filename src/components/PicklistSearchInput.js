@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./PicklistSearchInput.scss";
 
 function PicklistSearchInput(props) {
   const [value, setValue] = useState('');
@@ -28,7 +29,7 @@ function PicklistSearchInput(props) {
         type="text"
         className="picklist-input"
         value = {value}
-        placeholder="Choose Option(s)"
+        placeholder="Search For Option(s)"
         onChange={handleChange}
         onClick={toggleExpand}
         onKeyUp={filterList}

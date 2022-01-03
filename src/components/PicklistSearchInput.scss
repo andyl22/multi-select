@@ -1,0 +1,13 @@
+.picklist-search-input-container {
+  margin-bottom: 3px;
+  padding: 8px;
+}
+.picklist-input {
+  border-radius: 5px;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #e4e4e4;
+  &:focus {
+    outline: 3px solid #2684ff;
+  }
+}

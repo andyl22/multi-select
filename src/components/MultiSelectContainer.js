@@ -80,8 +80,6 @@ function MultiSelectContainer() {
     });
   });
 
-  console.log(checked);
-
   return (
     <>
       <div className="checked">{checked.join(", ")}</div>

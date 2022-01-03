@@ -1,15 +1,28 @@
 import React from "react";
 import PicklistItem from "./PicklistItem";
+import "./PicklistContainer.scss";
 
 function PicklistContainer(props) {
   const { checked, setChecked } = props;
 
   const findOrAddCheckedItem = (e) => {
-    if (checked.includes(e.target.value)) {
-      setChecked(checked.filter((x) => x !== e.target.value));
+    console.log("Fired")
+    // Check if selected element is the parent node of the checkbox/label. If not, ascend until parent node is selected.
+    let target = e.target;
+    if(![...target.classList].includes("picklist-item")) {
+      target = e.target.parentNode;
     } else {
-      if(e.target.value===undefined) return;
-      setChecked([...checked, e.target.value]);
+      e.target.checked = !e.target.checked;
+      console.log(!e.target.checked)
+    }
+    const targetValue = target.firstChild.value;
+
+    // Check if the value is already checked. Toggle the indicator if so.
+    if (checked.includes(targetValue)) {
+      setChecked(checked.filter((x) => x !== targetValue));
+    } else {
+      if(targetValue===undefined) return;
+      setChecked([...checked, targetValue]);
     }
   };
 

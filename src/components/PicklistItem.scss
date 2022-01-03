@@ -1,0 +1,48 @@
+.picklist-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  label {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 5px 8px 0;
+    &:hover {
+      cursor: pointer;
+      background: #DEEBFF;
+    }
+    input[type=checkbox] {
+      margin-left: 10px;
+      appearance: none;
+      font: inherit;
+      width: 1.15em;
+      height: 1.15em;
+      border: 0.15em solid #b2b8c0;
+      border-radius: 0.2em;
+      transform: translateY(-0.075em);
+      display: grid;
+      place-content: center;
+      &::before {
+        content: "";
+        width: 0.65em;
+        height: 0.65em;
+        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        box-shadow: inset 1em 1em var(--form-control-color);
+        transform: scale(0);
+        transition: 0.1s ease;
+        transform-origin: bottom left;
+        background: white;
+      }
+      &:checked::before {
+        transform: scale(1);
+      }
+      &:checked {
+        background: #1788d3;
+        border: 0px;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

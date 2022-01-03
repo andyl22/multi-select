@@ -1,0 +1,21 @@
+.picklist-container{
+  display: flex;
+  border-top: 1px solid #E4E4E4;
+  flex-direction: column;
+  max-height: 170px;
+  overflow-y: overlay;
+  width: 100%;
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 10px;
+      background: transparent;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #84B4FF;
+      border-radius: 5px;
+    }
+}
